@@ -13,8 +13,7 @@ Het idee is om een visualisatie tool te maken voor het visualiseren van de blend
 ## Could have
   * Waarschuwen wanneer de data oud is
   * Support voor andere formaten als .PNG en .JPEG
-
 ## Won't have
-  * Automatisch de nieuwe dataset ophalen
+  * Automatisch de nieuwste dataset ophalen
   * Realtime data via een API oid
   * Een interactieve GUI wrapper
