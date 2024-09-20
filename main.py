@@ -5,11 +5,11 @@ pd.options.display.max_columns = 32
 
 #regelt het parsen van argumenten
 parser = argparse.ArgumentParser(description='hello world!')
-parser.add_argument('-f', '--file', type=str, help='The relative or absolute file path to the json lines file containing the dataset')
+parser.add_argument('-f', '--file', required=True, type=str, help='The relative or absolute file path to the json lines file containing the dataset')
 args = parser.parse_args()
-file = args.file
 
-data = pd.read_json(file, lines=True)
+
+data = pd.read_json(args.file, lines=True)
 #zorgt ervoor dat we de belangrijke data hebben in aparte columns
 df = pd.json_normalize(data.explode('data')['data'])
 #zorgt ervoor dat de hardware die gebruikt wordt voor de benchmark er apart staat in een kolom ipv een column met arrays
