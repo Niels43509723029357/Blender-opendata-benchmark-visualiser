@@ -1,7 +1,7 @@
 import argparse
 
 import pandas as pd
-import matplotlib as plt
+import matplotlib.pyplot as plt
 
 # Zet maximum columns omhoog om het makkelijker te maken voor debugging
 pd.options.display.max_columns = 32
