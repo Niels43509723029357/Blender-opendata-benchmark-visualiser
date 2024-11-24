@@ -5,7 +5,7 @@ import os
 import pandas as pd
 import matplotlib.pyplot as plt
 
-pd.set_option('display.expand_frame_repr', False)
+
 def parse_args():
     # Regelt het parsen van argumenten met de argparse library
     parser = argparse.ArgumentParser(description='hello world!')
@@ -93,14 +93,18 @@ def process(chunk, args):
                     fulldata[device] = totalofchunk, len(group)
         case 'Time':
             # no processing for time graph, since that requires all the data at one point for sorting it, meaning we can only do this at the end
-            fulldata = pd.concat([fulldata, chunk[['device_info.compute_device', 'stats.render_time_no_sync', 'timestamp']]])
+            # We do need to handle a later deprecation, where empty columns will be taken into account when determining dtypes
+            if fulldata.empty:
+                fulldata = chunk[['device_info.compute_device', 'stats.render_time_no_sync', 'timestamp']]
+            else:
+                fulldata = pd.concat([fulldata, chunk[['device_info.compute_device', 'stats.render_time_no_sync', 'timestamp']]])
 
     current_chunk += 1
     print(f'Processed chunk {current_chunk}')
 
 
 def post_process(data, args):
-    print('Starting postprocessing')
+    print('Starting to make visualization ')
     match args.Plot:
         case 'Bar':
             for device, (total, benchmarks) in fulldata.items():
@@ -111,9 +115,13 @@ def post_process(data, args):
             plt.show()
 
         case "Time":
+            fulldata['timestamp'] = pd.to_datetime(fulldata['timestamp'])
             for device, group in fulldata.groupby('device_info.compute_device'):
+                print(f'Sorting device: {device}')
+                group = group.sort_values('timestamp')
+                print(f'Sorting done for device: {device}')
                 plt.plot(group['timestamp'], group['stats.render_time_no_sync'], label=device)
-
+                print(f'Plotted graph for device: {device}')
             plt.legend()
             plt.grid(True)
             plt.xlabel('Time')
@@ -122,7 +130,9 @@ def post_process(data, args):
             plt.tight_layout()
             plt.show()
 
-current_chunk = 0
+
+#used for debugging reasons
+current_chunk = 1
 
 
 
@@ -132,7 +142,7 @@ match arguments.Plot:
     case 'Bar':
         fulldata = {}
     case 'Time':
-        fulldata = pd.DataFrame(columns=['device_info.compute_device', 'stats.render_time_no_sync', 'timestamp'])
+        fulldata = pd.DataFrame
 
 for un_proccesed_chunk in pd.read_json(path, lines=True, chunksize=arguments.Chunksize):
     process(preprocess(un_proccesed_chunk, arguments), arguments)
