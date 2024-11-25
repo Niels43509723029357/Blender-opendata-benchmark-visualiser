@@ -1,5 +1,5 @@
 # Het idee
-Het idee is om een visualisatie tool te maken voor het visualiseren van de blender opendata dataset, te vinden op opendata.blender.org. Mijn plan is om dit via een command line te doen, maar als ik nog tijd over heb zal ik mogelijk nog een GUI wrapper hiervoor maken
+Het idee is om een visualisatie tool te maken voor het visualiseren van de blender opendata dataset, te vinden op opendata.blender.org. Mijn plan is om dit via een command line te doen
 
 
 ## Must have
