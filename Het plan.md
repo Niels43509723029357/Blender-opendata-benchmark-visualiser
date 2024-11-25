@@ -5,9 +5,8 @@ Het idee is om een visualisatie tool te maken voor het visualiseren van de blend
 ## Must have
   * Het importeren en parsen van het JSON-bestand
   * Een CLI die d.m.v. argumenten een aantal soorten grafieken kan maken, met output in de vorm van een vector bestand
-  * Het filteren van specifieke devices, besturingssystemen, benchmarks etc.
+  * Het filteren van specifieke devices, besturingssystemen, scenes etc.
 ## Should have
-  * Naast het JSON-bestand ook het .zip-bestand supporten zoals je het krijgt van de site.
   * Enigszins zuinig zijn met systeembronnen, vooral het werkgeheugen, aangezien de opendata blender snapshot rond de 1.1 GiB aan tekst is.
   * Over tijd lijngrafieken maken
 ## Could have
