@@ -51,9 +51,7 @@ def parse_args():
     # want dat doet het nog niet
     arguments.output_file = os.path.expanduser(arguments.output_file)
 
-    # standaard 30k regels per chunk
-    if not arguments.chunksize:
-        print('No chunk size given, using default of 30k lines per chunk.')
+    # Check of chunksize niet onzinwaarden heeft
     if arguments.chunksize <= 0:
         print(f'Chunksize of {arguments.chunksize} is invalid. '
               f'The chunksize has to be higher then 0.')
