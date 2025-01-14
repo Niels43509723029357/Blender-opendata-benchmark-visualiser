@@ -68,7 +68,7 @@ git checkout -b mijn-nieuwe-tak
 ```bash
 git push origin mijn-nieuwe-tak
 ```
-5. Open een Pull Request op github.com aan.
+5. Open een Pull Request op github.com.
 
 ## Licentie
 
